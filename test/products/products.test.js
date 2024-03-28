@@ -48,7 +48,7 @@ describe("Advanced test for products", () => {
     });
 
     it("Should get a product by providing its Id.", async () => {
-      const pid = "65f09c28320b0e9faff3b3be";
+      const pid = "65f09c28320b0e9faff3b3bc"; //Replace with real product Id
       const productsResponse = await requester
         .get(`/api/products/product/${pid}`)
         .set("Cookie", `${cookieName}=${token}`);
@@ -82,17 +82,17 @@ describe("Advanced test for products", () => {
     });
 
     it("Should update a product by provinding product Id and new product data.", async () => {
-      const pid = "66044548c95bd13c0c7e2f9e"; //Should be updated with real product Id
+      const pid = "65fc05e9099a6200b1c98c58"; //Should be updated with real product Id
 
       const productMock = {
-        title: "Licensed Wooden Hat",
+        title: "Practical Fresh Computer",
         description:
-          "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
-        code: 978 - 1 - 250 - 46667 - 9,
+          "The beautiful range of Apple Naturalé that has an exciting mix of natu…",
+        code: 978 - 0 - 421 - 77763 - 7,
         price: 2000, //Changing price property
-        status: false,
-        stock: 38,
-        category: "Industrial",
+        status: true,
+        stock: 35,
+        category: "Garden",
         thumbnails: [
           "https://picsum.photos/seed/DcrFSWRVY4/500/500",
           "https://picsum.photos/seed/Yy1rym8/500/500",
@@ -108,7 +108,7 @@ describe("Advanced test for products", () => {
     });
 
     it("Should delete a product by providing its Id.", async () => {
-      const pid = "65f09c28320b0e9faff3b3be"; //Should be updated with real product Id
+      const pid = "65f09c28320b0e9faff3b411"; //Should be updated with real product Id
       const productsResponse = await requester
         .delete(`/api/products/${pid}`)
         .set("Cookie", `${cookieName}=${token}`);
