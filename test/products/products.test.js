@@ -39,7 +39,7 @@ describe("Advanced test for products", () => {
     });
 
     it("Should get a all products from premium user by providing its user Id.", async () => {
-      const uid = "65f072d79a15dc9c0edff33a";
+      const uid = "65f072d79a15dc9c0edff33a"; //Replace with real premium user Id
       const productsResponse = await requester
         .get(`/api/products/user/${uid}`)
         .set("Cookie", `${cookieName}=${token}`);
@@ -56,12 +56,13 @@ describe("Advanced test for products", () => {
       expect(typeof productsResponse._body).to.eql("object");
     });
 
+    let testPid;
     it("Should post a product into DB by providing product info.", async () => {
       const productMock = {
         title: "Licensed Wooden Hat",
         description:
           "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
-        code: 978 - 1 - 250 - 46667 - 9,
+        code: "978-1-250-46667-9",
         price: 970.0,
         status: false,
         stock: 38,
@@ -79,17 +80,18 @@ describe("Advanced test for products", () => {
       expect(productsResponse.statusCode).to.eql(200);
       expect(productsResponse.statusCode).to.be.ok;
       expect(productsResponse._body.code).to.eql(productMock.code);
+      testPid = productsResponse._body._id;
     });
 
     it("Should update a product by provinding product Id and new product data.", async () => {
-      const pid = "65fc05e9099a6200b1c98c58"; //Should be updated with real product Id
+      const pid = testPid; //Should be updated with real product Id
 
       const productMock = {
         title: "Practical Fresh Computer",
         description:
           "The beautiful range of Apple Naturalé that has an exciting mix of natu…",
-        code: 978 - 0 - 421 - 77763 - 7,
-        price: 2000, //Changing price property
+        code: "978-0-421-77763-7",
+        price: 2000,
         status: true,
         stock: 35,
         category: "Garden",
@@ -108,7 +110,7 @@ describe("Advanced test for products", () => {
     });
 
     it("Should delete a product by providing its Id.", async () => {
-      const pid = "65f09c28320b0e9faff3b411"; //Should be updated with real product Id
+      const pid = testPid; //Should be updated with real product Id
       const productsResponse = await requester
         .delete(`/api/products/${pid}`)
         .set("Cookie", `${cookieName}=${token}`);
