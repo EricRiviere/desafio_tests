@@ -79,8 +79,8 @@ export const postProductController = async (req, res) => {
     }
 
     reqProduct.owner = creatorEmail;
-    await productsService.create(reqProduct);
-    res.json(reqProduct);
+    const product = await productsService.create(reqProduct);
+    res.json(product);
   } catch (error) {
     logger.error(error);
     res.status(400).json({
@@ -102,9 +102,10 @@ export const putProductController = async (req, res) => {
     ) {
       throw new Error("Not authorized to update product");
     }
-    await productsService.update(pid, product);
+    const newProduct = await productsService.update(pid, product);
     if (!product) return res.status(404).send("No product found");
-    res.json(product);
+    console.log(newProduct);
+    res.json(newProduct);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

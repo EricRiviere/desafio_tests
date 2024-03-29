@@ -61,7 +61,7 @@ export default class ProductService {
   }
 
   async updateProduct(id, product) {
-    return await productModel.findByIdAndUpdate(id, product);
+    return await productModel.findByIdAndUpdate(id, product, { new: true });
   }
 
   async deleteProduct(id) {
